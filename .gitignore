@@ -1,0 +1,17 @@
+
+### Java template
+*.class
+
+# Intellij
+*.iml
+*.iws
+.idea/
+
+# Mac
+.DS_Store
+
+# Maven
+target/
+
+# Debug
+debug.log
