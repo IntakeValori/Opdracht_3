@@ -29,7 +29,5 @@ public class ValoriHomePage {
         WebDriverWait wait = new WebDriverWait(driver,timeOut);
         wait.until(ExpectedConditions.visibilityOfElementLocated(fullStackTile));
         driver.findElement(fullStackTile).click();
-
     }
-
 }

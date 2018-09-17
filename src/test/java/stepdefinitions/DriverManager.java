@@ -23,5 +23,4 @@ public class DriverManager {
     public static void tearDown(){
         driver.quit();
     }
-
 }

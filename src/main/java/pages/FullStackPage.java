@@ -11,7 +11,6 @@ public class FullStackPage {
     private WebDriver driver;
     private int timeOut = 5;
 
-    private By fullStackSlogan = By.xpath("//p[contains(text(),'Build - Test - Deploy - Hug - Dance')]");
     private By fullStackHeader = By.xpath("//h2[contains(text(),'Full Stack Chapters')]");
     private By comeAndDanceButton = By.xpath("//*[@title='Come and dance']");
     private By contactUsButton = By.xpath("//a[@class='cta_button Neem-contact-op']");
@@ -19,12 +18,6 @@ public class FullStackPage {
     public FullStackPage(WebDriver driver){
         this.driver = driver;
         PageFactory.initElements(driver,this);
-    }
-
-    public boolean isFullStackSloganVisible(){
-        WebDriverWait wait = new WebDriverWait(driver, timeOut);
-        wait.until(ExpectedConditions.presenceOfElementLocated(fullStackSlogan));
-        return driver.findElement(fullStackSlogan).isDisplayed();
     }
 
     public boolean isFullStackHeaderVisibile(){
@@ -43,6 +36,4 @@ public class FullStackPage {
         Thread.sleep(300);
         driver.findElement(contactUsButton).click();
     }
-
-
 }

@@ -5,7 +5,6 @@ Feature: Test navigation on the valori.nl homepage
     And I navigate to the Full Stack page
     Then I want to come and dance
 
-
   Scenario: As a user I can navigate to the contact form from the FST page
     Given I am on the Valori homepage
     And I navigate to the Full Stack page
