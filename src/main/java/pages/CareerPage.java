@@ -11,7 +11,8 @@ public class CareerPage {
     private WebDriver driver;
     private int timeOut = 5;
 
-    private By careerPageTitle = By.xpath("Dansen bij Valori");
+    private By careerPageTitle = By.xpath("//h1[contains(text(), 'Werken bij Valori')]");
+    //De header is "Werken bij Valori".
 
     public CareerPage(WebDriver driver){
         PageFactory.initElements(driver,this);
@@ -23,5 +24,4 @@ public class CareerPage {
         wait.until(ExpectedConditions.presenceOfElementLocated(careerPageTitle));
         return driver.findElement(careerPageTitle).isDisplayed();
     }
-
 }

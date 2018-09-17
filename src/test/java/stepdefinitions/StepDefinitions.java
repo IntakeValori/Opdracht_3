@@ -39,7 +39,7 @@ public class StepDefinitions {
         FullStackPage fullStackPage = new FullStackPage(driver);
         CareerPage careerPage = new CareerPage(driver);
         fullStackPage.clickTheComeAndDanceButton();
-        assertTrue(careerPage.isTitleVisible());
+        assertTrue("Expecting the career header to be visible",careerPage.isTitleVisible());
     }
 
     @And( "^I contact Valori$" )
@@ -52,8 +52,8 @@ public class StepDefinitions {
 
     @Then( "^the contact us form is available$" )
     public void theContactUsFormIsAvailable() throws Throwable {
-
-        throw new PendingException();
+        ContactUsPage contactUsPage = new ContactUsPage(driver);
+        assertTrue("Expecting the form to be available",contactUsPage.isFormAvailable());
     }
 }
 
