@@ -5,10 +5,11 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import org.openqa.selenium.WebDriver;
-import pages.CareerPage;
 import pages.ContactUsPage;
-import pages.FullStackPage;
+import pages.MobileChapterPage;
 import pages.ValoriHomePage;
+
+import java.util.ArrayList;
 
 import static org.junit.Assert.assertTrue;
 
@@ -23,36 +24,41 @@ public class StepDefinitions {
     @Given( "^I am on the Valori homepage$" )
     public void iAmOnTheValoriHomepage(){
         ValoriHomePage valoriHomePage = new ValoriHomePage(driver);
-        assertTrue("Expecting the innovation header to be visible",valoriHomePage.isInnovationHeaderVisible());
+        valoriHomePage.clickCookieConsent();
+        assertTrue("Expecting the innovation header to be visible",valoriHomePage.isLogoVisible());
     }
 
-    @And( "^I navigate to the Full Stack page$" )
+    @And( "^I navigate to the Mobile Chapter page$" )
     public void iNavigateToTheFullStackPage(){
         ValoriHomePage valoriHomePage = new ValoriHomePage(driver);
-        FullStackPage fullStackPage = new FullStackPage(driver);
-        valoriHomePage.clickFullStackTile();
-        assertTrue("Expecting the full stack header to be visible",fullStackPage.isFullStackHeaderVisibile());
+        MobileChapterPage mobileChapterPage = new MobileChapterPage(driver);
+        valoriHomePage.clickBusinessDropdown();
+        valoriHomePage.clickMobileInDropDOwn();
+        assertTrue("Expecting the full stack header to be visible", mobileChapterPage.isMobilePageVisibile());
     }
 
-    @Then( "^I want to come and dance$" )
-    public void iWantToComeAndDance(){
-        FullStackPage fullStackPage = new FullStackPage(driver);
-        CareerPage careerPage = new CareerPage(driver);
-        fullStackPage.clickTheComeAndDanceButton();
-        assertTrue(careerPage.isTitleVisible());
+    @Then( "^I can read articles about the Mobile Chapter$" )
+    public void iCanReadAboutMobileChapter(){
+        MobileChapterPage mobileChapterPage = new MobileChapterPage(driver);
+        assertTrue(mobileChapterPage.areArticlesVisible());
     }
 
     @And( "^I contact Valori$" )
     public void iContactValori()throws Throwable{
-        FullStackPage fullStackPage = new FullStackPage(driver);
+        MobileChapterPage mobileChapterPage = new MobileChapterPage(driver);
         ContactUsPage contactUsPage = new ContactUsPage(driver);
-        fullStackPage.clickContactUsButton();
+        mobileChapterPage.clickContactUsButton();
+
+        //switch to new tab
+        ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
         assertTrue(contactUsPage.isTitleVisible());
     }
 
     @Then( "^the contact us form is available$" )
     public void theContactUsFormIsAvailable() throws Throwable {
-
+        //TODO IMPLEMENT THIS
+        //Verify the contact form fields are available.
         throw new PendingException();
     }
 }
