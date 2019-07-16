@@ -6,8 +6,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.concurrent.TimeUnit;
-
 public class ContactUsPage {
 
     private WebDriver driver;
@@ -90,7 +88,6 @@ public class ContactUsPage {
         driver.findElement(ContactButton).click();
         driver.findElement(LastName).clear();
         driver.findElement(LastName).sendKeys("Foederer");
-
         return ("Achternaam is invulbaar");
     }
     public String TestEmail(){
@@ -117,4 +114,5 @@ public class ContactUsPage {
         wait.until(ExpectedConditions.presenceOfElementLocated(Thankyou));
         return driver.findElement(Thankyou).isDisplayed();
     }
+
 }

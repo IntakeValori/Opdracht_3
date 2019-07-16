@@ -9,6 +9,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.ContactUsPage;
 import pages.MobileChapterPage;
+import pages.UtilitiesAka;
+import pages.Utils;
 import pages.ValoriHomePage;
 
 import java.util.ArrayList;
@@ -78,6 +80,9 @@ public class StepDefinitions {
 
         //Controleer of de verplichte velden in te vullen zijn. Hier wou ik een negatieve test plaatsen maar dit is me helaas niet gelukt.
         //geprobeerd met asserttrue en assertfalse en een try/catch
+
+
+
 
         contactUsPage.TestFirstname();
 
