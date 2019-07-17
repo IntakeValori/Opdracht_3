@@ -10,7 +10,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.ContactUsPage;
 import pages.MobileChapterPage;
 import pages.UtilitiesAka;
-import pages.Utils;
 import pages.ValoriHomePage;
 
 import java.util.ArrayList;
@@ -67,28 +66,33 @@ public class StepDefinitions {
     @Then( "^the contact us form is available$" )
     public void theContactUsFormIsAvailable() throws Throwable {
         ContactUsPage contactUsPage = new ContactUsPage(driver);
+        UtilitiesAka aka = new UtilitiesAka(driver);
         //Controleer of het contactformulier aanwezig is en of de individuele velden aanwezig zijn.
-        assertTrue("Contact formulier is niet aanwezig", contactUsPage.isFormAvailable());
+       // assertTrue("Contact formulier is niet aanwezig", contactUsPage.isFormAvailable());
 
-        assertTrue("Voornaam veld is niet aanwezig", contactUsPage.isFirstnameAvailable());
+      //  assertTrue("Voornaam veld is niet aanwezig", contactUsPage.isFirstnameAvailable());
 
-        assertTrue("Achternaam veld is niet aanwezig", contactUsPage.isLastnameAvailable());
+      //  assertTrue("Achternaam veld is niet aanwezig", contactUsPage.isLastnameAvailable());
 
-        assertTrue("Email veld is niet aanwezig", contactUsPage.isEmailAvailable());
+       // assertTrue("Email veld is niet aanwezig", contactUsPage.isEmailAvailable());
 
-        assertTrue("Neem contact met mij op btn is niet aanwezig", contactUsPage.isContactbtnAvailable());
-
-        //Controleer of de verplichte velden in te vullen zijn. Hier wou ik een negatieve test plaatsen maar dit is me helaas niet gelukt.
-        //geprobeerd met asserttrue en assertfalse en een try/catch
+       // assertTrue("Neem contact met mij op btn is niet aanwezig", contactUsPage.isContactbtnAvailable());
 
 
+        List<Map<String, String>> list = dt.asMaps(String.class, String.class);
+        for(int i=0; i<list.size(); i++) {
+            System.out.println(list.get(i).get("First Name"));
+            System.out.println(list.get(i).get("Last Name"));
+
+        aka.ElementAssertAndFill("//input[contains(@id,'firstname-')]");
+        aka.ElementAssertAndFill("//input[contains(@id,'lastname-')]");
 
 
-        contactUsPage.TestFirstname();
+       // contactUsPage.TestFirstname();
 
-        contactUsPage.TestLastname();
+        //contactUsPage.TestLastname();
 
-        contactUsPage.TestEmail();
+      //  contactUsPage.TestEmail();
 
        //onderstaande code eruit gecomment omdat de test elke keer een contactverzoek stuurt naar Valori
              //contactUsPage.TestContactbtn();
