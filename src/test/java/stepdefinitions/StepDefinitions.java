@@ -11,10 +11,8 @@ import pages.ContactUsPage;
 import pages.MobileChapterPage;
 import pages.UtilitiesAka;
 import pages.ValoriHomePage;
-
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
-
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -79,13 +77,9 @@ public class StepDefinitions {
        // assertTrue("Neem contact met mij op btn is niet aanwezig", contactUsPage.isContactbtnAvailable());
 
 
-        List<Map<String, String>> list = dt.asMaps(String.class, String.class);
-        for(int i=0; i<list.size(); i++) {
-            System.out.println(list.get(i).get("First Name"));
-            System.out.println(list.get(i).get("Last Name"));
 
-        aka.ElementAssertAndFill("//input[contains(@id,'firstname-')]");
-        aka.ElementAssertAndFill("//input[contains(@id,'lastname-')]");
+        aka.ElementAssertAndFill("//input[contains(@id,'firstname-')]", "Akash");
+        aka.ElementAssertAndFill("//input[contains(@id,'lastname-')]", "Foederer");
 
 
        // contactUsPage.TestFirstname();
