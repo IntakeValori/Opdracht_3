@@ -1,10 +1,11 @@
 package stepdefinitions;
 
-import com.sun.xml.internal.xsom.impl.scd.Iterators;
+
 import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
+import io.cucumber.datatable.DataTable;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -14,28 +15,31 @@ import pages.UtilitiesAka;
 import pages.ValoriHomePage;
 import java.util.ArrayList;
 import java.util.List;
+
+import java.util.Map;
 import java.util.NoSuchElementException;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 
+
 public class StepDefinitions {
     private WebDriver driver;
 
-    public StepDefinitions (){
+    public StepDefinitions() {
         this.driver = DriverManager.driver;
     }
 
 
-    @Given( "^I am on the Valori homepage$" )
-    public void iAmOnTheValoriHomepage(){
+    @Given("^I am on the Valori homepage$")
+    public void iAmOnTheValoriHomepage() {
         ValoriHomePage valoriHomePage = new ValoriHomePage(driver);
         valoriHomePage.clickCookieConsent();
-        assertTrue("Expecting the innovation header to be visible",valoriHomePage.isLogoVisible());
+        assertTrue("Expecting the innovation header to be visible", valoriHomePage.isLogoVisible());
     }
 
-    @And( "^I navigate to the Mobile Chapter page$" )
-    public void iNavigateToTheMobileChapterPage(){
+    @And("^I navigate to the Mobile Chapter page$")
+    public void iNavigateToTheMobileChapterPage() {
         ValoriHomePage valoriHomePage = new ValoriHomePage(driver);
         MobileChapterPage mobileChapterPage = new MobileChapterPage(driver);
         valoriHomePage.clickBusinessDropdown();
@@ -43,14 +47,14 @@ public class StepDefinitions {
         assertTrue("Expecting the Mobile automation header to be visible", mobileChapterPage.isMobilePageVisibile());
     }
 
-    @Then( "^I can read articles about the Mobile Chapter$" )
-    public void iCanReadAboutMobileChapter(){
+    @Then("^I can read articles about the Mobile Chapter$")
+    public void iCanReadAboutMobileChapter() {
         MobileChapterPage mobileChapterPage = new MobileChapterPage(driver);
         assertTrue(mobileChapterPage.areArticlesVisible());
     }
 
-    @And( "^I contact Valori$" )
-    public void iContactValori()throws Throwable{
+    @And("^I contact Valori$")
+    public void iContactValori() throws Throwable {
         MobileChapterPage mobileChapterPage = new MobileChapterPage(driver);
         ContactUsPage contactUsPage = new ContactUsPage(driver);
         mobileChapterPage.clickContactUsButton();
@@ -64,43 +68,50 @@ public class StepDefinitions {
         assertTrue(contactUsPage.isTitleVisible());
     }
 
-    @Then( "^the contact us form is available$" )
+    @Then("^the contact us form is available$")
     public void theContactUsFormIsAvailable() throws Throwable {
         ContactUsPage contactUsPage = new ContactUsPage(driver);
         UtilitiesAka aka = new UtilitiesAka(driver);
         //Controleer of het contactformulier aanwezig is en of de individuele velden aanwezig zijn.
-       // assertTrue("Contact formulier is niet aanwezig", contactUsPage.isFormAvailable());
+        // assertTrue("Contact formulier is niet aanwezig", contactUsPage.isFormAvailable());
 
-      //  assertTrue("Voornaam veld is niet aanwezig", contactUsPage.isFirstnameAvailable());
+        //  assertTrue("Voornaam veld is niet aanwezig", contactUsPage.isFirstnameAvailable());
 
-      //  assertTrue("Achternaam veld is niet aanwezig", contactUsPage.isLastnameAvailable());
+        //  assertTrue("Achternaam veld is niet aanwezig", contactUsPage.isLastnameAvailable());
 
-       // assertTrue("Email veld is niet aanwezig", contactUsPage.isEmailAvailable());
+        // assertTrue("Email veld is niet aanwezig", contactUsPage.isEmailAvailable());
 
-       // assertTrue("Neem contact met mij op btn is niet aanwezig", contactUsPage.isContactbtnAvailable());
+        // assertTrue("Neem contact met mij op btn is niet aanwezig", contactUsPage.isContactbtnAvailable());
+    }
 
-        List<Map<String, String>> list = dt.asMaps(String.class, String.class);
-        for(int i=0; i<list.size(); i++) {
-            System.out.println(list.get(i).get("First Name"));
+    @Given("^fill the contact form with the following data$")
+        public void fillContactForm(DataTable DT) throws Throwable {
+            UtilitiesAka aka = new UtilitiesAka(driver);
+
+        List<Map<String, String>> list = DT.asMaps(String.class, String.class);
+        for (int i = 0; i < list.size(); i++) {
+            aka.ElementAssertAndFill("//input[contains(@id,'firstname-')]",list.get(i).get("First Name"));
             System.out.println(list.get(i).get("Last Name"));
 
+        }
 
             aka.ElementAssertAndFill("//input[contains(@id,'firstname-')]", "Akash");
-        aka.ElementAssertAndFill("//input[contains(@id,'lastname-')]", "Foederer");
+            aka.ElementAssertAndFill("//input[contains(@id,'lastname-')]", "Foederer");
 
 
-       // contactUsPage.TestFirstname();
+            // contactUsPage.TestFirstname();
 
-        //contactUsPage.TestLastname();
+            //contactUsPage.TestLastname();
 
-      //  contactUsPage.TestEmail();
+            //  contactUsPage.TestEmail();
 
-       //onderstaande code eruit gecomment omdat de test elke keer een contactverzoek stuurt naar Valori
-             //contactUsPage.TestContactbtn();
+            //onderstaande code eruit gecomment omdat de test elke keer een contactverzoek stuurt naar Valori
+            //contactUsPage.TestContactbtn();
 
-             //assertTrue("Het contact formulier is ingevuld",contactUsPage.ContactformThankyou());
-    }
+            //assertTrue("Het contact formulier is ingevuld",contactUsPage.ContactformThankyou());
+        }
 
         //Deze throw snapte ik niet helemaal en heb dit dus eruit gecomment omdat het ervoor zorgde dat de test werd geskipt
-            // throw new PendingException();
+        // throw new PendingException();
     }
+
