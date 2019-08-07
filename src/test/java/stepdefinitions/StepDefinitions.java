@@ -1,6 +1,4 @@
 package stepdefinitions;
-
-
 import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -15,12 +13,10 @@ import pages.UtilitiesAka;
 import pages.ValoriHomePage;
 import java.util.ArrayList;
 import java.util.List;
-
 import java.util.Map;
 import java.util.NoSuchElementException;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-
 
 
 public class StepDefinitions {
@@ -65,50 +61,40 @@ public class StepDefinitions {
         //Echter moet de link https://innovation.valori.nl/neem-contact-op zijn om de pagina te bereiken.
         ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(1));
+
+        //nakijken of de juiste pagina is bereikt.
         assertTrue(contactUsPage.isTitleVisible());
     }
 
     @Then("^the contact us form is available$")
     public void theContactUsFormIsAvailable() throws Throwable {
         ContactUsPage contactUsPage = new ContactUsPage(driver);
-        UtilitiesAka aka = new UtilitiesAka(driver);
-        //Controleer of het contactformulier aanwezig is en of de individuele velden aanwezig zijn.
-        // assertTrue("Contact formulier is niet aanwezig", contactUsPage.isFormAvailable());
+        //nakijken of het contactformulier aanwezig is.
+        assertTrue(contactUsPage.isFormAvailable());
 
-        //  assertTrue("Voornaam veld is niet aanwezig", contactUsPage.isFirstnameAvailable());
-
-        //  assertTrue("Achternaam veld is niet aanwezig", contactUsPage.isLastnameAvailable());
-
-        // assertTrue("Email veld is niet aanwezig", contactUsPage.isEmailAvailable());
-
-        // assertTrue("Neem contact met mij op btn is niet aanwezig", contactUsPage.isContactbtnAvailable());
     }
 
     @Given("^fill the contact form with the following data$")
-        public void fillContactForm(DataTable DT) throws Throwable {
+        public void fillContactForm(DataTable exampleTable) throws Throwable {
             UtilitiesAka aka = new UtilitiesAka(driver);
-
-        List<Map<String, String>> list = DT.asMaps(String.class, String.class);
+        ContactUsPage contactUsPage = new ContactUsPage(driver);
+        //Nakijken of de contactformulier velden aanwezig zijn en deze ook gelijk invullen.
+        List<Map<String, String>> list = exampleTable.asMaps(String.class, String.class);
         for (int i = 0; i < list.size(); i++) {
-            aka.ElementAssertAndFill("//input[contains(@id,'firstname-')]",list.get(i).get("First Name"));
-            System.out.println(list.get(i).get("Last Name"));
+            aka.ElementAssertAndFill("//input[contains(@id,'firstname-')]",(list.get(i).get("First name")));
+            aka.ElementAssertAndFill("//input[contains(@id,'lastname-')]",(list.get(i).get("Last name")));
+            aka.ElementAssertAndFill("//input[contains(@id,'company-')]",(list.get(i).get("Company name")));
+            aka.ElementAssertAndFill("//input[contains(@id,'email-')]",(list.get(i).get("Email")));
+            aka.ElementAssertAndFill("//input[contains(@id,'phone-')]",(list.get(i).get("Phonenumber")));
+            aka.ElementAssertAndFill("//textarea[contains(@id,'message-')]",(list.get(i).get("Message")));
 
-        }
+            }
+        //nakijken of button aanwezig is en deze daarna ook klikken. klik functie uitgezet ivm daadwerkelijk sturen van formulier.
+        assertTrue(contactUsPage.isContactbtnAvailable());
+       //contactUsPage.TestContactbtn();
 
-            aka.ElementAssertAndFill("//input[contains(@id,'firstname-')]", "Akash");
-            aka.ElementAssertAndFill("//input[contains(@id,'lastname-')]", "Foederer");
-
-
-            // contactUsPage.TestFirstname();
-
-            //contactUsPage.TestLastname();
-
-            //  contactUsPage.TestEmail();
-
-            //onderstaande code eruit gecomment omdat de test elke keer een contactverzoek stuurt naar Valori
-            //contactUsPage.TestContactbtn();
-
-            //assertTrue("Het contact formulier is ingevuld",contactUsPage.ContactformThankyou());
+        //nakijken of het versturen echt gebeurd is op basis van het dank je wel bericht.
+        //assertTrue(contactUsPage.ContactformThankyou());
         }
 
         //Deze throw snapte ik niet helemaal en heb dit dus eruit gecomment omdat het ervoor zorgde dat de test werd geskipt

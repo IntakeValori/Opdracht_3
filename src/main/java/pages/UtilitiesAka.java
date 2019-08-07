@@ -2,10 +2,13 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import javax.xml.xpath.XPath;
 
 
 public final class UtilitiesAka {
@@ -23,11 +26,10 @@ public final class UtilitiesAka {
     public String ElementAssertAndFill(String text, String invullen){
         WebDriverWait wait = new WebDriverWait(driver,timeOut);
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(text)));
+        driver.findElement(By.xpath(text)).clear();
         driver.findElement(By.xpath(text)).sendKeys(invullen);
+
         return ("Element is invulbaar");
-
-
-
     }
 
 
