@@ -34,7 +34,7 @@ public final class UtilitiesAka {
         WebDriverWait wait = new WebDriverWait(driver,timeOut);
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(Element)));
         driver.findElement(By.xpath(Element)).click();
-        driver.findElement(By.xpath(Check));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(Check)));
         return ("Pagina is bereikt, Check is aanwezig");
     }
 

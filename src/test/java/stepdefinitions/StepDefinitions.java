@@ -76,17 +76,17 @@ public class StepDefinitions {
     }
 
     @And("^I enter ([^\"]*), ([^\"]*), ([^\"]*), ([^\"]*), ([^\"]*) and ([^\"]*)$")
-        public void IenterFirstnameLastnameCompanynameEmailPhonenumberMessage(String arg1, String arg2,String arg3,String arg4,String arg5,String arg6) throws Throwable {
+        public void IenterFirstnameLastnameCompanynameEmailPhonenumberMessage(String firstname, String lastname,String company,String email,String phone,String message) throws Throwable {
         UtilitiesAka aka = new UtilitiesAka(driver);
         ContactUsPage contactUsPage = new ContactUsPage(driver);
 
         //Nakijken of de contactformulier velden aanwezig zijn en deze ook gelijk invullen.
-        aka.ElementAssertAndFill("//input[contains(@id,'firstname-')]", arg1);
-        aka.ElementAssertAndFill("//input[contains(@id,'lastname-')]", arg2);
-        aka.ElementAssertAndFill("//input[contains(@id,'company-')]",arg3);
-        aka.ElementAssertAndFill("//input[contains(@id,'email-')]",arg4);
-        aka.ElementAssertAndFill("//input[contains(@id,'phone-')]",arg5);
-        aka.ElementAssertAndFill("//textarea[contains(@id,'message-')]",arg6);
+        aka.ElementAssertAndFill("//input[contains(@id,'firstname-')]", firstname);
+        aka.ElementAssertAndFill("//input[contains(@id,'lastname-')]", lastname);
+        aka.ElementAssertAndFill("//input[contains(@id,'company-')]",company);
+        aka.ElementAssertAndFill("//input[contains(@id,'email-')]",email);
+        aka.ElementAssertAndFill("//input[contains(@id,'phone-')]",phone);
+        aka.ElementAssertAndFill("//textarea[contains(@id,'message-')]",message);
 
         //Kijk of de verstuur button aanwezig is, klik erop en check of de volgende pagina is bereikt.
         //Methode uitgecomment ivm daadwerkelijk versturen van contactformulier
