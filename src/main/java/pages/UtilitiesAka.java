@@ -23,11 +23,19 @@ public final class UtilitiesAka {
 
 
 
-    public String ElementAssertAndFill(String text, String invullen){
+    public String ElementAssertAndFill(String Element, String Text){
         WebDriverWait wait = new WebDriverWait(driver,timeOut);
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(text)));
-        driver.findElement(By.xpath(text)).sendKeys(invullen);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(Element)));
+        driver.findElement(By.xpath(Element)).sendKeys(Text);
         return ("Element is invulbaar");
+    }
+
+    public String ElementAssertClickandTest(String Element,String Check){
+        WebDriverWait wait = new WebDriverWait(driver,timeOut);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(Element)));
+        driver.findElement(By.xpath(Element)).click();
+        driver.findElement(By.xpath(Check));
+        return ("Pagina is bereikt, Check is aanwezig");
     }
 
 

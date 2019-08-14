@@ -13,9 +13,6 @@ public class ContactUsPage {
 
     private By contactUsPageTitle = By.xpath("//h1[contains(text(),'Heb je een vraag? Laat het ons weten.')]");
     private By contactForm = By.xpath ("//h3[contains(text(), 'Contact formulier')]");
-    private By ContactButton = By.xpath ("//input[@type='submit']");
-    private By Thankyou = By.xpath("//h2[contains(text(), 'Bedankt voor het invullen. We nemen zo snel mogelijk contact met je op.')]");
-
 
     public ContactUsPage(WebDriver driver){
         PageFactory.initElements(driver,this);
@@ -29,30 +26,9 @@ public class ContactUsPage {
         return driver.findElement(contactUsPageTitle).isDisplayed();
     }
 
-
     public Boolean isFormAvailable(){
         WebDriverWait wait = new WebDriverWait(driver,timeOut);
         wait.until(ExpectedConditions.presenceOfElementLocated(contactForm));
         return driver.findElement(contactForm).isDisplayed();
         }
-
-    public Boolean isContactbtnAvailable(){
-        WebDriverWait wait = new WebDriverWait(driver,timeOut);
-        wait.until(ExpectedConditions.presenceOfElementLocated(contactForm));
-        return driver.findElement(ContactButton).isDisplayed();
-    }
-
-
-    public void TestContactbtn(){
-        WebDriverWait wait = new WebDriverWait(driver,timeOut);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(ContactButton));
-        driver.findElement(ContactButton).click();
-    }
-
-    public boolean ContactformThankyou (){
-        WebDriverWait wait = new WebDriverWait(driver,timeOut);
-        wait.until(ExpectedConditions.presenceOfElementLocated(Thankyou));
-        return driver.findElement(Thankyou).isDisplayed();
-    }
-
 }

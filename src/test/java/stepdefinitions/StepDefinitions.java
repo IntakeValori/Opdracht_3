@@ -75,34 +75,24 @@ public class StepDefinitions {
 
     }
 
-    @Given("^fill the contact form with my (\\S+) , (\\S+), (\\S+),(\\S+),(\\S+) ,(\\S+)$")
-        public void fillTheContactFormWithMyDetails(String arg1, String arg2) throws Throwable {
+    @And("^I enter ([^\"]*), ([^\"]*), ([^\"]*), ([^\"]*), ([^\"]*) and ([^\"]*)$")
+        public void IenterFirstnameLastnameCompanynameEmailPhonenumberMessage(String arg1, String arg2,String arg3,String arg4,String arg5,String arg6) throws Throwable {
         UtilitiesAka aka = new UtilitiesAka(driver);
         ContactUsPage contactUsPage = new ContactUsPage(driver);
 
-       aka.ElementAssertAndFill("//input[contains(@id,'firstname-')]", arg1);
-        aka.ElementAssertAndFill("//input[contains(@id,'lastname-')]", arg2);
-
-    }
-
         //Nakijken of de contactformulier velden aanwezig zijn en deze ook gelijk invullen.
-        // List<Map<String, String>> list = exampleTable.asMaps(String.class, String.class);
-        //for (int i = 0; i < list.size(); i++) {
-          //  aka.ElementAssertAndFill("//input[contains(@id,'firstname-')]",(list.get(i).get("First name")));
-            //aka.ElementAssertAndFill("//input[contains(@id,'lastname-')]",(list.get(i).get("Last name")));
-            //aka.ElementAssertAndFill("//input[contains(@id,'company-')]",(list.get(i).get("Company name")));
-            //aka.ElementAssertAndFill("//input[contains(@id,'email-')]",(list.get(i).get("Email")));
-            //aka.ElementAssertAndFill("//input[contains(@id,'phone-')]",(list.get(i).get("Phonenumber")));
-            //aka.ElementAssertAndFill("//textarea[contains(@id,'message-')]",(list.get(i).get("Message")));
-        //}
+        aka.ElementAssertAndFill("//input[contains(@id,'firstname-')]", arg1);
+        aka.ElementAssertAndFill("//input[contains(@id,'lastname-')]", arg2);
+        aka.ElementAssertAndFill("//input[contains(@id,'company-')]",arg3);
+        aka.ElementAssertAndFill("//input[contains(@id,'email-')]",arg4);
+        aka.ElementAssertAndFill("//input[contains(@id,'phone-')]",arg5);
+        aka.ElementAssertAndFill("//textarea[contains(@id,'message-')]",arg6);
 
-        //nakijken of button aanwezig is en deze daarna ook klikken. klik functie uitgezet ivm daadwerkelijk sturen van formulier.
-       // assertTrue(contactUsPage.isContactbtnAvailable());
-       //contactUsPage.TestContactbtn();
-
-        //nakijken of het versturen echt gebeurd is op basis van het dank je wel bericht.
-        //assertTrue(contactUsPage.ContactformThankyou());
-        }
+        //Kijk of de verstuur button aanwezig is, klik erop en check of de volgende pagina is bereikt.
+        //Methode uitgecomment ivm daadwerkelijk versturen van contactformulier
+        //aka.ElementAssertClickandTest("//input[@type='submit']","//h2[contains(text(), 'Bedankt voor het invullen. We nemen zo snel mogelijk contact met je op.')]");
+    }
+}
 
 
 

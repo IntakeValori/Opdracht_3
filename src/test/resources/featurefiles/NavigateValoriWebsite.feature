@@ -11,7 +11,7 @@ Feature: Test navigation on the valori.nl homepage
     And I navigate to the Mobile Chapter page
     And I contact Valori
     Then the contact us form is available
-    Given fill the contact form with my <Firstname>, <Lastname>, <Companyname>, <Email>, <Phonenumber> and <Message>
+    And I enter <Firstname>, <Lastname>, <Companyname>, <Email>, <Phonenumber> and <Message>
 
     Examples:
       | Firstname  | Lastname  | Companyname  | Email                   | Phonenumber | Message                     |
