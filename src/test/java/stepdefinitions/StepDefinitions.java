@@ -71,33 +71,42 @@ public class StepDefinitions {
         ContactUsPage contactUsPage = new ContactUsPage(driver);
         //nakijken of het contactformulier aanwezig is.
         assertTrue(contactUsPage.isFormAvailable());
+        contactUsPage.isTitleVisible();
 
     }
 
-    @Given("^fill the contact form with the following data$")
-        public void fillContactForm(DataTable exampleTable) throws Throwable {
-            UtilitiesAka aka = new UtilitiesAka(driver);
+    @Given("^fill the contact form with my (\\S+) , (\\S+), (\\S+),(\\S+),(\\S+) ,(\\S+)$")
+        public void fillTheContactFormWithMyDetails(String arg1, String arg2) throws Throwable {
+        UtilitiesAka aka = new UtilitiesAka(driver);
         ContactUsPage contactUsPage = new ContactUsPage(driver);
-        //Nakijken of de contactformulier velden aanwezig zijn en deze ook gelijk invullen.
-        List<Map<String, String>> list = exampleTable.asMaps(String.class, String.class);
-        for (int i = 0; i < list.size(); i++) {
-            aka.ElementAssertAndFill("//input[contains(@id,'firstname-')]",(list.get(i).get("First name")));
-            aka.ElementAssertAndFill("//input[contains(@id,'lastname-')]",(list.get(i).get("Last name")));
-            aka.ElementAssertAndFill("//input[contains(@id,'company-')]",(list.get(i).get("Company name")));
-            aka.ElementAssertAndFill("//input[contains(@id,'email-')]",(list.get(i).get("Email")));
-            aka.ElementAssertAndFill("//input[contains(@id,'phone-')]",(list.get(i).get("Phonenumber")));
-            aka.ElementAssertAndFill("//textarea[contains(@id,'message-')]",(list.get(i).get("Message")));
 
-            }
+       aka.ElementAssertAndFill("//input[contains(@id,'firstname-')]", arg1);
+        aka.ElementAssertAndFill("//input[contains(@id,'lastname-')]", arg2);
+
+    }
+
+        //Nakijken of de contactformulier velden aanwezig zijn en deze ook gelijk invullen.
+        // List<Map<String, String>> list = exampleTable.asMaps(String.class, String.class);
+        //for (int i = 0; i < list.size(); i++) {
+          //  aka.ElementAssertAndFill("//input[contains(@id,'firstname-')]",(list.get(i).get("First name")));
+            //aka.ElementAssertAndFill("//input[contains(@id,'lastname-')]",(list.get(i).get("Last name")));
+            //aka.ElementAssertAndFill("//input[contains(@id,'company-')]",(list.get(i).get("Company name")));
+            //aka.ElementAssertAndFill("//input[contains(@id,'email-')]",(list.get(i).get("Email")));
+            //aka.ElementAssertAndFill("//input[contains(@id,'phone-')]",(list.get(i).get("Phonenumber")));
+            //aka.ElementAssertAndFill("//textarea[contains(@id,'message-')]",(list.get(i).get("Message")));
+        //}
+
         //nakijken of button aanwezig is en deze daarna ook klikken. klik functie uitgezet ivm daadwerkelijk sturen van formulier.
-        assertTrue(contactUsPage.isContactbtnAvailable());
+       // assertTrue(contactUsPage.isContactbtnAvailable());
        //contactUsPage.TestContactbtn();
 
         //nakijken of het versturen echt gebeurd is op basis van het dank je wel bericht.
         //assertTrue(contactUsPage.ContactformThankyou());
         }
 
-        //Deze throw snapte ik niet helemaal en heb dit dus eruit gecomment omdat het ervoor zorgde dat de test werd geskipt
+
+
+    //Deze throw snapte ik niet helemaal en heb dit dus eruit gecomment omdat het ervoor zorgde dat de test werd geskipt
         // throw new PendingException();
-    }
+
 

@@ -26,9 +26,7 @@ public final class UtilitiesAka {
     public String ElementAssertAndFill(String text, String invullen){
         WebDriverWait wait = new WebDriverWait(driver,timeOut);
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(text)));
-        driver.findElement(By.xpath(text)).clear();
         driver.findElement(By.xpath(text)).sendKeys(invullen);
-
         return ("Element is invulbaar");
     }
 
