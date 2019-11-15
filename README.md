@@ -26,12 +26,18 @@ right click the individual featurefiles and select Run
 ```
 Create a new branch and include your name within the branch name
 Within the project you will find 2 scenario's within the feature NavigateValoriWebsite
-The second scenario is missing the last step definition.
-Implement this step definition.
+You will find that both scenario's are not working.
+One test is failing because of content changes.
+The second test still needs its final step code to be implemented
+
+Make both tests pass.
+Don't forget, we are not judging you on code alone !
+Remember to implement validations and make sure you leave the
+project in a nicer state then you have found it :)
+
 Push your code to your branch
 Create a pull request
 Do not merge to master
 Goodluck and have fun !
 
-Hints: Keep to code conventions, remember the boy scout rule.
 ```
