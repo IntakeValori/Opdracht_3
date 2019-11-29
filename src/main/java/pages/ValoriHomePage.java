@@ -19,7 +19,7 @@ public class ValoriHomePage {
 
     public ValoriHomePage(WebDriver driver){
         this.driver = driver;
-        PageFactory.initElements(driver,"https://www.valori.nl/");
+        PageFactory.initElements(driver,this);
     }
 
     public boolean isLogoVisible(){
