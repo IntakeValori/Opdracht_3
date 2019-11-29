@@ -9,21 +9,21 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class ValoriHomePage {
 
     private WebDriver driver;
-    private int timeOut = 5;
+    private int timeOut = 10;
 
-    private By valoriLogo = By.xpath("//h1[contains(text(),'Innovation starts with testing')]");
+    private By valoriLogo = By.xpath("//a[@class='nav-bar__logo']");
     private By businessDropdown = By.xpath("//span[contains(text(),'Businesses')]");
-    private By mobileDropdownItem = By.xpath("//a[contains(text(),'Mobile')]");
+    private By mobileDropdownItem = By.xpath("//a[contains(text(),'Mobiel app testen')]");
     private By cookieAcceptBtn = By.xpath("//button[@class='cookie-notice__link reset-button']");
 
 
     public ValoriHomePage(WebDriver driver){
         this.driver = driver;
-        PageFactory.initElements(driver,this);
+        PageFactory.initElements(driver,"https://www.valori.nl/");
     }
 
     public boolean isLogoVisible(){
-        WebDriverWait wait = new WebDriverWait(driver,timeOut);
+        WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.visibilityOfElementLocated(valoriLogo));
         return driver.findElement(valoriLogo).isDisplayed();
     }
@@ -41,7 +41,7 @@ public class ValoriHomePage {
     }
 
     public void clickMobileInDropDOwn(){
-        WebDriverWait wait = new WebDriverWait(driver,timeOut);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.visibilityOfElementLocated(mobileDropdownItem));
         driver.findElement(mobileDropdownItem).click();
     }
