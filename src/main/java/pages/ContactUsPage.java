@@ -11,7 +11,8 @@ public class ContactUsPage {
     private WebDriver driver;
     private int timeOut = 5;
 
-    private By contactUsPageTitle = By.xpath("//h1[contains(text(),'Heb je een vraag? Laat het ons weten.')]");
+    private By contactUsPageTitle = By.id("hs_cos_wrapper_module_1556139453617195_");
+    private By contactFormHeader = By.id("hs_cos_wrapper_module_1556196215775883_title");
 
     public ContactUsPage(WebDriver driver){
         PageFactory.initElements(driver,this);
@@ -22,6 +23,12 @@ public class ContactUsPage {
         WebDriverWait wait = new WebDriverWait(driver,timeOut);
         wait.until(ExpectedConditions.presenceOfElementLocated(contactUsPageTitle));
         return driver.findElement(contactUsPageTitle).isDisplayed();
+    }
+
+    public Boolean isContactFormHeaderPresent(){
+        WebDriverWait wait = new WebDriverWait(driver,timeOut);
+        wait.until(ExpectedConditions.presenceOfElementLocated(contactFormHeader));
+        return driver.findElement(contactFormHeader).isDisplayed();
     }
 
 }

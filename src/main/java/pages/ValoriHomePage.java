@@ -34,13 +34,13 @@ public class ValoriHomePage {
         driver.findElement(cookieAcceptBtn).click();
     }
 
-    public void clickBusinessDropdown(){
+    public void clickBusinessDropDown(){
         WebDriverWait wait = new WebDriverWait(driver,timeOut);
         wait.until(ExpectedConditions.visibilityOfElementLocated(businessDropdown));
         driver.findElement(businessDropdown).click();
     }
 
-    public void clickMobileInDropDOwn(){
+    public void clickMobileInDropDown(){
         WebDriverWait wait = new WebDriverWait(driver,timeOut);
         wait.until(ExpectedConditions.visibilityOfElementLocated(mobileDropdownItem));
         driver.findElement(mobileDropdownItem).click();
