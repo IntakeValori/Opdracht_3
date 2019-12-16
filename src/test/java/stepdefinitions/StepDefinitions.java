@@ -32,19 +32,19 @@ public class StepDefinitions {
     public void iNavigateToTheFullStackPage(){
         ValoriHomePage valoriHomePage = new ValoriHomePage(driver);
         MobileChapterPage mobileChapterPage = new MobileChapterPage(driver);
-        valoriHomePage.clickBusinessDropdown();
-        valoriHomePage.clickMobileInDropDOwn();
+        valoriHomePage.clickBusinessDropDown();
+        valoriHomePage.clickMobileInDropDown();
         assertTrue("Expecting the full stack header to be visible", mobileChapterPage.isMobilePageVisibile());
     }
 
     @Then( "^I can read articles about the Mobile Chapter$" )
     public void iCanReadAboutMobileChapter(){
         MobileChapterPage mobileChapterPage = new MobileChapterPage(driver);
-        assertTrue(mobileChapterPage.areArticlesVisible());
+        assertTrue("Expecting the articles are visible", mobileChapterPage.areArticlesVisible());
     }
 
     @And( "^I contact Valori$" )
-    public void iContactValori()throws Throwable{
+    public void iContactValori() throws Throwable {
         MobileChapterPage mobileChapterPage = new MobileChapterPage(driver);
         ContactUsPage contactUsPage = new ContactUsPage(driver);
         mobileChapterPage.clickContactUsButton();
@@ -52,14 +52,16 @@ public class StepDefinitions {
         //switch to new tab
         ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(1));
-        assertTrue(contactUsPage.isTitleVisible());
+        //Verify the contact page is present by assertion on page title
+        assertTrue("Expecting the contact page is visible", contactUsPage.isTitleVisible());
     }
 
     @Then( "^the contact us form is available$" )
     public void theContactUsFormIsAvailable() throws Throwable {
-        //TODO IMPLEMENT THIS
-        //Verify the contact form fields are available.
-        throw new PendingException();
+        ContactUsPage contactUsPage = new ContactUsPage(driver);
+        //Verify the contact form is available by assertion on contact form header
+        assertTrue("Expecting the contact form is present", contactUsPage.isContactFormHeaderPresent());
+        //Notice that navigating to this contact us form is also possible directly from the main menu
     }
 }
 
