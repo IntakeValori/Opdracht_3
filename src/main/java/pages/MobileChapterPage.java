@@ -41,12 +41,10 @@ public class MobileChapterPage {
         return true;
     }
 
-
     public void clickContactUsButton(){
         WebDriverWait wait = new WebDriverWait(driver,timeOut);
         wait.until(ExpectedConditions.presenceOfElementLocated(contactUsButton));
         driver.findElement(contactUsButton).click();
     }
-
 
 }
