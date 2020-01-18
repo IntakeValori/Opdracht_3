@@ -19,7 +19,7 @@ public class DriverManager {
     }
 
     @After
-    public void teardown() {
-            driver.quit();
-        }
+    public void teardown(){
+        driver.quit();
+    }
 }

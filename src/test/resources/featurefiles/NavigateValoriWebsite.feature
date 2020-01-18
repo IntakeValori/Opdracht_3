@@ -11,3 +11,5 @@ Feature: Test navigation on the valori.nl homepage
     And I navigate to the Mobile Chapter page
     And I contact Valori
     Then the contact us form is available
+    And the error message is displayed when submitting empty form
+    And the contact form can be filled in
