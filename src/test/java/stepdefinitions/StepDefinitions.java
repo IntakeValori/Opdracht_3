@@ -19,8 +19,7 @@ public class StepDefinitions {
     public StepDefinitions (){
         this.driver = DriverManager.driver;
     }
-
-
+    
     @Given( "^I am on the Valori homepage$" )
     public void iAmOnTheValoriHomepage(){
         ValoriHomePage valoriHomePage = new ValoriHomePage(driver);
