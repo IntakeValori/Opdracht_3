@@ -31,7 +31,7 @@ public class StepDefinitions {
         ValoriHomePage valoriHomePage = new ValoriHomePage(driver);
         MobileChapterPage mobileChapterPage = new MobileChapterPage(driver);
         valoriHomePage.clickBusinessDropdown();
-        valoriHomePage.clickMobileInDropDOwn();
+        valoriHomePage.clickMobileInDropdown();
         assertTrue("Expecting the full stack header to be visible", mobileChapterPage.isMobilePageVisible());
     }
 

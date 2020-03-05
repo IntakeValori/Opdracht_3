@@ -27,12 +27,11 @@ public class MobileChapterPage {
         return driver.findElement(mobilePageSlogan).isDisplayed();
     }
 
-    public boolean areArticlesVisible() {
+    public boolean areArticlesVisible(){
         WebDriverWait wait = new WebDriverWait(driver,timeOut);
         wait.until(ExpectedConditions.presenceOfElementLocated(articleHeaderBlock));
         List<WebElement> allArticles = driver.findElements(articleHeaderBlock);
-        for (WebElement article: allArticles) {
-            System.out.println(article.getText());
+        for (WebElement article: allArticles){
             if(!article.getAttribute("href").contains("https://www.valori.nl/"))
                 return false;
         }

@@ -28,7 +28,7 @@ public class ContactUsPage {
     public void FillContactForm(String condition){
         WebDriverWait wait = new WebDriverWait(driver,timeOut);
         wait.until(ExpectedConditions.presenceOfElementLocated(By.name("firstname")));
-        if (condition.equals("with insufficient details")) {
+        if (condition.equals("with insufficient details")){
             driver.findElement(By.name("firstname")).sendKeys("Voornaam");
         }
         else {

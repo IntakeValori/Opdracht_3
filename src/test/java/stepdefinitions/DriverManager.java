@@ -24,7 +24,7 @@ public class DriverManager {
 
     @After
     public void tearDown(Scenario scenario) throws InterruptedException {
-        if (scenario.isFailed()) {
+        if (scenario.isFailed()){
             try {
                 byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
                 String testName = scenario.getName();

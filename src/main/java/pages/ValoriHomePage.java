@@ -39,7 +39,7 @@ public class ValoriHomePage {
         driver.findElement(businessDropdown).click();
     }
 
-    public void clickMobileInDropDOwn(){
+    public void clickMobileInDropdown(){
         WebDriverWait wait = new WebDriverWait(driver,timeOut);
         wait.until(ExpectedConditions.visibilityOfElementLocated(mobileDropdownItem));
         driver.findElement(mobileDropdownItem).click();
