@@ -11,6 +11,8 @@ import cucumber.api.junit.Cucumber;
         plugin = {"pretty", "html:target/cucumber-reports"}
 )
 
+// @TODO: In the future it might be nice to keep a history of the test results. I.e. with a timestamped folder name in CucumberOptions: plugin
+
 public class TestRunner {
 
 }
