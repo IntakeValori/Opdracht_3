@@ -6,14 +6,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.util.List;
 
 public class MobileChapterPage {
 
     private WebDriver driver;
     private int timeOut = 5;
-
     private By mobilePageSlogan = By.xpath("//h1[contains(text(),'Mobiel App testen')]");
     private By articleHeaderBlock = By.xpath("//h2[@class='h1 block__title']/a");
     private By contactUsButton = By.xpath("//a[contains(text(),'Neem contact op')]");
@@ -23,7 +21,7 @@ public class MobileChapterPage {
         PageFactory.initElements(driver,this);
     }
 
-    public boolean isMobilePageVisibile(){
+    public boolean isMobilePageVisible(){
         WebDriverWait wait = new WebDriverWait(driver,timeOut);
         wait.until(ExpectedConditions.presenceOfElementLocated(mobilePageSlogan));
         return driver.findElement(mobilePageSlogan).isDisplayed();
@@ -41,12 +39,9 @@ public class MobileChapterPage {
         return true;
     }
 
-
     public void clickContactUsButton(){
         WebDriverWait wait = new WebDriverWait(driver,timeOut);
         wait.until(ExpectedConditions.presenceOfElementLocated(contactUsButton));
         driver.findElement(contactUsButton).click();
     }
-
-
 }

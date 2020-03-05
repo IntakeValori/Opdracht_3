@@ -10,7 +10,6 @@ public class ValoriHomePage {
 
     private WebDriver driver;
     private int timeOut = 5;
-
     private By valoriLogo = By.xpath("//a[@class='nav-bar__logo']");
     private By businessDropdown = By.xpath("//span[contains(text(),'Businesses')]");
     private By mobileDropdownItem = By.xpath("//a[contains(text(),'Mobiel app testen')]");
@@ -45,5 +44,4 @@ public class ValoriHomePage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(mobileDropdownItem));
         driver.findElement(mobileDropdownItem).click();
     }
-
 }
