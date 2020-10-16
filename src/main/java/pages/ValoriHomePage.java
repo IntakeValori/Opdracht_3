@@ -12,7 +12,7 @@ public class ValoriHomePage {
     private int timeOut = 5;
 
     private By valoriLogo = By.xpath("//a[@class='nav-bar__logo']");
-    private By businessDropdown = By.xpath("//span[contains(text(),'Businesses')]");
+    private By expertisesDropdown = By.xpath("//span[contains(text(),'Expertises')]");
     private By mobileDropdownItem = By.xpath("//a[contains(text(),'Mobiel app testen')]");
     private By cookieAcceptBtn = By.xpath("//button[@class='cookie-notice__link reset-button']");
 
@@ -34,10 +34,10 @@ public class ValoriHomePage {
         driver.findElement(cookieAcceptBtn).click();
     }
 
-    public void clickBusinessDropdown(){
+    public void clickExpertisesDropdown(){
         WebDriverWait wait = new WebDriverWait(driver,timeOut);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(businessDropdown));
-        driver.findElement(businessDropdown).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(expertisesDropdown));
+        driver.findElement(expertisesDropdown).click();
     }
 
     public void clickMobileInDropDOwn(){

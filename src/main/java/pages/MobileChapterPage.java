@@ -47,6 +47,4 @@ public class MobileChapterPage {
         wait.until(ExpectedConditions.presenceOfElementLocated(contactUsButton));
         driver.findElement(contactUsButton).click();
     }
-
-
 }
