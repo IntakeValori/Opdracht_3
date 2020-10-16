@@ -11,7 +11,10 @@ public class ContactUsPage {
     private WebDriver driver;
     private int timeOut = 5;
 
-    private By contactUsPageTitle = By.xpath("//h1[contains(text(),'Heb je een vraag? Laat het ons weten.')]");
+    private By contactUsPageTitle = By.xpath("//h1[contains(text(),'Contact')]");
+    // TODO find out why at the moment i need to use the full xpath
+    private By formHtlmElement = By.xpath("/html/body/div[2]/main/div/section/article/div[2]/form");
+
 
     public ContactUsPage(WebDriver driver){
         PageFactory.initElements(driver,this);
@@ -23,5 +26,10 @@ public class ContactUsPage {
         wait.until(ExpectedConditions.presenceOfElementLocated(contactUsPageTitle));
         return driver.findElement(contactUsPageTitle).isDisplayed();
     }
-
+    
+    public Boolean formHtlmElementFound(){
+        WebDriverWait wait = new WebDriverWait(driver,timeOut);
+        wait.until(ExpectedConditions.presenceOfElementLocated(formHtlmElement));
+        return driver.findElement(formHtlmElement).isDisplayed();
+    }
 }

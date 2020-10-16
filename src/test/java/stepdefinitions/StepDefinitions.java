@@ -32,7 +32,7 @@ public class StepDefinitions {
     public void iNavigateToTheFullStackPage(){
         ValoriHomePage valoriHomePage = new ValoriHomePage(driver);
         MobileChapterPage mobileChapterPage = new MobileChapterPage(driver);
-        valoriHomePage.clickBusinessDropdown();
+        valoriHomePage.clickExpertisesDropdown();
         valoriHomePage.clickMobileInDropDOwn();
         assertTrue("Expecting the full stack header to be visible", mobileChapterPage.isMobilePageVisibile());
     }
@@ -57,10 +57,15 @@ public class StepDefinitions {
 
     @Then( "^the contact us form is available$" )
     public void theContactUsFormIsAvailable() throws Throwable {
-        //TODO IMPLEMENT THIS
-        //Verify the contact form fields are available.
-        throw new PendingException();
-    }
+    	MobileChapterPage mobileChapterPage = new MobileChapterPage(driver);
+        ContactUsPage contactUsPage = new ContactUsPage(driver);
+        mobileChapterPage.clickContactUsButton();
+
+        //switch to new tab
+        ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+        assertTrue(contactUsPage.formHtlmElementFound());
+}
 }
 
 
