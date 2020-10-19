@@ -11,3 +11,8 @@ Feature: Test navigation on the valori.nl homepage
     And I navigate to the Mobile Chapter page
     And I contact Valori
     Then the contact us form is available
+    
+  Scenario: As a user I can navigate the website to view videos about working at Valori
+    Given I am on the Valori homepage
+    And I navigate to the Werken bij page
+    Then I can view videos about working at Valori
