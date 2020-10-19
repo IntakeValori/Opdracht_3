@@ -6,19 +6,25 @@ import cucumber.api.java.en.Then;
 import modules.BrowserScreenshotMaker;
 import modules.StackTraceHelper;
 import org.openqa.selenium.WebDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pages.ContactUsPage;
 import pages.MobileChapterPage;
 import pages.ValoriHomePage;
+import pages.WorkAtValoriPage;
+
 import java.util.ArrayList;
 import static org.junit.Assert.assertTrue;
 
 public class StepDefinitions {
 	private WebDriver driver;
-	private BrowserScreenshotMaker screenshotMaker;;
+	private BrowserScreenshotMaker screenshotMaker;
+	private Logger logger;
 
 	public StepDefinitions() {
 		this.driver = DriverManager.driver;
 		this.screenshotMaker = new BrowserScreenshotMaker();
+		this.logger = LoggerFactory.getLogger(StepDefinitions.class);
 	}
 
 	@Given("^I am on the Valori homepage$")
@@ -33,6 +39,12 @@ public class StepDefinitions {
 		catch (AssertionError e) {
 			screenshotMaker.takeScreenShot(this.driver, "src/test/screenshots", StackTraceHelper.getMethodNameCaller());
 		}
+
+		catch (Exception e) {
+			logger.error("unexpected exception: ", e);
+			// throw new exception so junit picks up on the actual exception
+			throw new Exception(e);
+		}
 	}
 
 	@And("^I navigate to the Mobile Chapter page$")
@@ -42,12 +54,17 @@ public class StepDefinitions {
 
 		try {
 			valoriHomePage.clickExpertisesDropdown();
-			valoriHomePage.clickMobileInDropDOwn();
+			valoriHomePage.clickMobileInDropDown();
 			assertTrue("Expecting the full stack header to be visible", mobileChapterPage.isMobilePageVisibile());
 		}
 
 		catch (AssertionError e) {
 			screenshotMaker.takeScreenShot(this.driver, "src/test/screenshots", StackTraceHelper.getMethodNameCaller());
+		}
+
+		catch (Exception e) {
+			logger.error("unexpected exception: ", e);
+			throw new Exception(e);
 		}
 	}
 
@@ -60,6 +77,9 @@ public class StepDefinitions {
 
 		catch (AssertionError e) {
 			screenshotMaker.takeScreenShot(this.driver, "src/test/screenshots", StackTraceHelper.getMethodNameCaller());
+		} catch (Exception e) {
+			logger.error("unexpected exception: ", e);
+			throw new Exception(e);
 		}
 	}
 
@@ -79,6 +99,9 @@ public class StepDefinitions {
 
 		catch (AssertionError e) {
 			screenshotMaker.takeScreenShot(this.driver, "src/test/screenshots", StackTraceHelper.getMethodNameCaller());
+		} catch (Exception e) {
+			logger.error("unexpected exception: ", e);
+			throw new Exception(e);
 		}
 	}
 
@@ -98,6 +121,45 @@ public class StepDefinitions {
 
 		catch (AssertionError e) {
 			screenshotMaker.takeScreenShot(this.driver, "src/test/screenshots", StackTraceHelper.getMethodNameCaller());
+		} catch (Exception e) {
+			logger.error("unexpected exception: ", e);
+			throw new Exception(e);
+		}
+	}
+
+	@And("^I navigate to the Werken bij page$")
+	public void iNavigateToTheWerkenBijPage() throws Throwable {
+		ValoriHomePage valoriHomePage = new ValoriHomePage(driver);
+		WorkAtValoriPage workAtValoriPage = new WorkAtValoriPage(driver);
+
+		try {
+			valoriHomePage.clickWerkenBij();
+			assertTrue("Expecting the full stack header to be visible",
+					workAtValoriPage.isWorkingAtValoriPageVisibile());
+		}
+
+		catch (AssertionError e) {
+			screenshotMaker.takeScreenShot(this.driver, "src/test/screenshots", StackTraceHelper.getMethodNameCaller());
+		}
+
+		catch (Exception e) {
+			logger.error("unexpected exception: ", e);
+			throw new Exception(e);
+		}
+	}
+
+	@Then("^I can view videos about working at Valori$")
+	public void iCanViewVideosAboutWorkingAtValori() throws Throwable {
+		WorkAtValoriPage workAtValoriPage = new WorkAtValoriPage(driver);
+		try {
+			assertTrue(workAtValoriPage.areIframesVisible());
+		}
+
+		catch (AssertionError e) {
+			screenshotMaker.takeScreenShot(this.driver, "src/test/screenshots", StackTraceHelper.getMethodNameCaller());
+		} catch (Exception e) {
+			logger.error("unexpected exception: ", e);
+			throw new Exception(e);
 		}
 	}
 }
