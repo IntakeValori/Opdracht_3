@@ -9,8 +9,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class ContactUsPage {
 
 	private WebDriver driver;
+	// TODO make class properties final/constant???
 	private int timeOut = 5;
-
 	private By contactUsPageTitle = By.xpath("//h1[contains(text(),'Contact')]");
 	// TODO find out why at the moment i need to use the full xpath
 	private By formHtlmElement = By.xpath("/html/body/div[2]/main/div/section/article/div[2]/form");

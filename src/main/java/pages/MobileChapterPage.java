@@ -12,8 +12,8 @@ import java.util.List;
 public class MobileChapterPage {
 
 	private WebDriver driver;
+	// TODO make class properties final/constant???
 	private int timeOut = 5;
-
 	private By mobilePageSlogan = By.xpath("//h1[contains(text(),'Mobiel App testen')]");
 	private By articleHeaderBlock = By.xpath("//h2[@class='h1 block__title']/a");
 	private By contactUsButton = By.xpath("//a[contains(text(),'Neem contact op')]");

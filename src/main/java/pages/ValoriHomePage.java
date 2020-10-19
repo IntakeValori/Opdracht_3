@@ -9,10 +9,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class ValoriHomePage {
 
 	private WebDriver driver;
+	// TODO make class properties final/constant???
 	private int timeOut = 5;
-
 	private By valoriLogo = By.xpath("//a[@class='nav-bar__logo']");
 	private By expertisesDropdown = By.xpath("//span[contains(text(),'Expertises')]");
+	private By werkenBijHeader = By.xpath("//a[contains(text(),'Werken bij')]");
 	private By mobileDropdownItem = By.xpath("//a[contains(text(),'Mobiel app testen')]");
 	private By cookieAcceptBtn = By.xpath("//button[@class='cookie-notice__link reset-button']");
 
@@ -39,10 +40,15 @@ public class ValoriHomePage {
 		driver.findElement(expertisesDropdown).click();
 	}
 
-	public void clickMobileInDropDOwn() {
+	public void clickMobileInDropDown() {
 		WebDriverWait wait = new WebDriverWait(driver, timeOut);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(mobileDropdownItem));
 		driver.findElement(mobileDropdownItem).click();
 	}
 
+	public void clickWerkenBij() {
+		WebDriverWait wait = new WebDriverWait(driver, timeOut);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(werkenBijHeader));
+		driver.findElement(werkenBijHeader).click();
+	}
 }
