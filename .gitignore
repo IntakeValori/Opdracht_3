@@ -15,3 +15,6 @@ target/
 
 # Debug
 debug.log
+
+# Screenshots
+src/test/screenshots
