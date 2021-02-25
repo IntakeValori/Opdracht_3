@@ -1,9 +1,9 @@
 package stepdefinitions;
 
-import cucumber.api.PendingException;
-import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
+import io.cucumber.java.PendingException;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import org.openqa.selenium.WebDriver;
 import pages.ContactUsPage;
 import pages.MobileChapterPage;
@@ -32,7 +32,7 @@ public class StepDefinitions {
     public void iNavigateToTheFullStackPage(){
         ValoriHomePage valoriHomePage = new ValoriHomePage(driver);
         MobileChapterPage mobileChapterPage = new MobileChapterPage(driver);
-        valoriHomePage.clickBusinessDropdown();
+        valoriHomePage.clickExpertisesDropdown();
         valoriHomePage.clickMobileInDropDOwn();
         assertTrue("Expecting the full stack header to be visible", mobileChapterPage.isMobilePageVisibile());
     }

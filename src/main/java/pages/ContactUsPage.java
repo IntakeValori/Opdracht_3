@@ -11,7 +11,7 @@ public class ContactUsPage {
     private WebDriver driver;
     private int timeOut = 5;
 
-    private By contactUsPageTitle = By.xpath("//h1[contains(text(),'Heb je een vraag? Laat het ons weten.')]");
+    private By contactUsPageTitle = By.xpath("//h1[contains(text(),'Contact')]");
 
     public ContactUsPage(WebDriver driver){
         PageFactory.initElements(driver,this);
