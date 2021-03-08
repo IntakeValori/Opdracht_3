@@ -44,7 +44,7 @@ public class StepDefinitions {
     }
 
     @And( "^I contact Valori$" )
-    public void iContactValori()throws Throwable{
+    public void iContactValori(){
         MobileChapterPage mobileChapterPage = new MobileChapterPage(driver);
         ContactUsPage contactUsPage = new ContactUsPage(driver);
         mobileChapterPage.clickContactUsButton();
@@ -56,10 +56,11 @@ public class StepDefinitions {
     }
 
     @Then( "^the contact us form is available$" )
-    public void theContactUsFormIsAvailable() throws Throwable {
-        //TODO IMPLEMENT THIS
-        //Verify the contact form fields are available.
-        throw new PendingException();
+    public void theContactUsFormIsAvailable() {
+        //Added by FvZ
+        //So far only checks for H2-title of the contact form
+        ContactUsPage contactUsPage2 = new ContactUsPage(driver);
+        assertTrue(contactUsPage2.isContactVisible());
     }
 }
 
