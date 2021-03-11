@@ -57,10 +57,9 @@ public class StepDefinitions {
 
     @Then( "^the contact us form is available$" )
     public void theContactUsFormIsAvailable() {
-        //Added by FvZ
         //So far only checks for H2-title of the contact form
-        ContactUsPage contactUsPage2 = new ContactUsPage(driver);
-        assertTrue(contactUsPage2.isContactVisible());
+        ContactUsPage contactUsPage = new ContactUsPage(driver);
+        assertTrue(contactUsPage.isContactVisible());
     }
 }
 
