@@ -12,6 +12,7 @@ public class ContactUsPage {
     private int timeOut = 5;
 
     private By contactUsPageTitle = By.xpath("//h1[contains(text(),'Contact')]");
+    private By contactUsPageForm = By.xpath("//h2[contains(text(),'Contactformulier')]");
 
     public ContactUsPage(WebDriver driver){
         PageFactory.initElements(driver,this);
@@ -22,6 +23,11 @@ public class ContactUsPage {
         WebDriverWait wait = new WebDriverWait(driver,timeOut);
         wait.until(ExpectedConditions.presenceOfElementLocated(contactUsPageTitle));
         return driver.findElement(contactUsPageTitle).isDisplayed();
+    }
+    public Boolean isContactVisible(){
+        WebDriverWait wait = new WebDriverWait(driver,timeOut);
+        wait.until(ExpectedConditions.presenceOfElementLocated(contactUsPageForm));
+        return driver.findElement(contactUsPageForm).isDisplayed();
     }
 
 }
