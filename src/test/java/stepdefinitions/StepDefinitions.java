@@ -4,9 +4,12 @@ import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import org.apache.commons.lang3.NotImplementedException;
 import org.openqa.selenium.WebDriver;
 import pages.ContactUsPage;
-import pages.MobileChapterPage;
+import pages.MobileAppTestingPage;
+import pages.TestAutomationPage;
 import pages.ValoriHomePage;
 
 import java.util.ArrayList;
@@ -14,40 +17,54 @@ import java.util.ArrayList;
 import static org.junit.Assert.assertTrue;
 
 public class StepDefinitions {
+
+    private ValoriHomePage valoriHomePage;
+    private MobileAppTestingPage mobileAppTestingPage;
+    private ContactUsPage contactUsPage;
+    private TestAutomationPage testAutomationPage;
     private WebDriver driver;
 
-    public StepDefinitions (){
+    public StepDefinitions() {
         this.driver = DriverManager.driver;
     }
 
-
-    @Given( "^I am on the Valori homepage$" )
-    public void iAmOnTheValoriHomepage(){
-        ValoriHomePage valoriHomePage = new ValoriHomePage(driver);
+    @Given("^I am on the Valori homepage$")
+    public void iAmOnTheValoriHomepage() {
+        valoriHomePage = new ValoriHomePage(driver);
         valoriHomePage.clickCookieConsent();
-        assertTrue("Expecting the innovation header to be visible",valoriHomePage.isLogoVisible());
+        assertTrue("Expecting the innovation header to be visible", valoriHomePage.isLogoVisible());
     }
 
-    @And( "^I navigate to the Mobile Chapter page$" )
-    public void iNavigateToTheFullStackPage(){
-        ValoriHomePage valoriHomePage = new ValoriHomePage(driver);
-        MobileChapterPage mobileChapterPage = new MobileChapterPage(driver);
-        valoriHomePage.clickExpertisesDropdown();
-        valoriHomePage.clickMobileInDropDOwn();
-        assertTrue("Expecting the full stack header to be visible", mobileChapterPage.isMobilePageVisibile());
+    @When("I navigate to the {string} page")
+    public void iNavigateToThePage(String page) {
+
+        switch (page) {
+            case "Mobile app testing":
+                mobileAppTestingPage = new MobileAppTestingPage(driver);
+                valoriHomePage.clickExpertisesDropdown();
+                valoriHomePage.clickMobileAppTestingInDropDown();
+                assertTrue("Expecting the mobile app testing header to be visible", mobileAppTestingPage.isMobilePageVisible());
+                break;
+            case "Test automation":
+                testAutomationPage = new TestAutomationPage(driver);
+                valoriHomePage.clickExpertisesDropdown();
+                valoriHomePage.clickTestAutomationInDropDown();
+                assertTrue("Expecting the test automation header to be visible", testAutomationPage.isTestAutomationPageVisible());
+                break;
+            default:
+                throw new NotImplementedException();
+        }
     }
 
-    @Then( "^I can read articles about the Mobile Chapter$" )
-    public void iCanReadAboutMobileChapter(){
-        MobileChapterPage mobileChapterPage = new MobileChapterPage(driver);
-        assertTrue(mobileChapterPage.areArticlesVisible());
+    @Then("^I can read articles about mobile app testing$")
+    public void iCanReadAboutMobileChapter() {
+        assertTrue(mobileAppTestingPage.areArticlesVisible());
     }
 
-    @And( "^I contact Valori$" )
-    public void iContactValori()throws Throwable{
-        MobileChapterPage mobileChapterPage = new MobileChapterPage(driver);
-        ContactUsPage contactUsPage = new ContactUsPage(driver);
-        mobileChapterPage.clickContactUsButton();
+    @When("^I contact Valori$")
+    public void iContactValori() throws Throwable {
+        contactUsPage = new ContactUsPage(driver);
+        testAutomationPage.clickContactUsButton();
 
         //switch to new tab
         ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
@@ -55,11 +72,17 @@ public class StepDefinitions {
         assertTrue(contactUsPage.isTitleVisible());
     }
 
-    @Then( "^the contact us form is available$" )
+    @Then("^the contact us form is available$")
     public void theContactUsFormIsAvailable() throws Throwable {
-        //TODO IMPLEMENT THIS
-        //Verify the contact form fields are available.
-        throw new PendingException();
+        assertTrue(contactUsPage.areFormFieldsVisible());
+    }
+
+    @Then("I can fill the {string} input field in the contact form with {string}")
+    public void iCanFillTheInputFieldInTheContactFormWith(String inputFieldType, String input) {
+        contactUsPage.fillInputField(inputFieldType, input);
+        //how to validate that the input fields are filled?
+        assertTrue(contactUsPage.areFormFieldsVisible());
+
     }
 }
 

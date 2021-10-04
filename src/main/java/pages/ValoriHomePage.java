@@ -13,7 +13,8 @@ public class ValoriHomePage {
 
     private By valoriLogo = By.cssSelector(".nav-bar__logo");
     private By expertisesDropdown = By.xpath("//span[contains(text(),'Expertises')]");
-    private By mobileDropdownItem = By.xpath("//a[contains(text(),'Mobiel app testen')]");
+    private By mobileAppTestingDropdownItem = By.xpath("//a[contains(text(),'Mobiel app testen')]");
+    private By testAutomationDropdownItem = By.xpath("//a[contains(text(),'Testautomatisering')]");
     private By cookieAcceptBtn = By.xpath("//button[@class='cookie-notice__link reset-button']");
 
 
@@ -23,27 +24,34 @@ public class ValoriHomePage {
     }
 
     public boolean isLogoVisible(){
-        WebDriverWait wait = new WebDriverWait(driver,timeOut);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(valoriLogo));
+        waitUntil(valoriLogo);
         return driver.findElement(valoriLogo).isDisplayed();
     }
 
-    public void clickCookieConsent(){
-        WebDriverWait wait = new WebDriverWait(driver,timeOut);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(cookieAcceptBtn));
+     public void clickCookieConsent(){
+         waitUntil(cookieAcceptBtn);
         driver.findElement(cookieAcceptBtn).click();
     }
 
     public void clickExpertisesDropdown(){
-        WebDriverWait wait = new WebDriverWait(driver,timeOut);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(expertisesDropdown));
+        waitUntil(expertisesDropdown);
         driver.findElement(expertisesDropdown).click();
     }
 
-    public void clickMobileInDropDOwn(){
+    public void clickMobileAppTestingInDropDown(){
+        waitUntil(mobileAppTestingDropdownItem);
+        driver.findElement(mobileAppTestingDropdownItem).click();
+    }
+
+    public void clickTestAutomationInDropDown(){
+        waitUntil(testAutomationDropdownItem);
+        driver.findElement(testAutomationDropdownItem).click();
+    }
+
+    //Not DRY -> implement a BasePage...?
+    private void waitUntil(By element) {
         WebDriverWait wait = new WebDriverWait(driver,timeOut);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(mobileDropdownItem));
-        driver.findElement(mobileDropdownItem).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(element));
     }
 
 }
