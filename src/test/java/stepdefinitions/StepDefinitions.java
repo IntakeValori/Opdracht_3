@@ -4,10 +4,13 @@ import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.ContactUsPage;
 import pages.MobileChapterPage;
 import pages.ValoriHomePage;
+import utils.NetworkUtils;
 
 import java.util.ArrayList;
 
@@ -53,6 +56,15 @@ public class StepDefinitions {
         ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(1));
         assertTrue(contactUsPage.isTitleVisible());
+
+        NetworkUtils network = new NetworkUtils(driver);
+        network.startSession().blockPostRequest("neem-contact-op");
+        driver.findElement(By.cssSelector("[id=\"form-input-firstName\"]")).sendKeys("Ico");
+        driver.findElement(By.cssSelector("[id=\"form-input-lastName\"]")).sendKeys("Bakker");
+        driver.findElement(By.cssSelector("[id=\"form-input-email\"]")).sendKeys("icobakker@valori.nl");
+        driver.findElement(By.cssSelector("[id=\"form-input-message\"]")).sendKeys("Let op! Als dit bericht door is gekomen dan heeft Ico het goed fout gedaan. Zou je dit bij hem willen melden? Bvd!");
+        driver.findElement(By.cssSelector("button.block-button--primary")).click();
+        Thread.sleep(5000);
     }
 
     @Then( "^the contact us form is available$" )
