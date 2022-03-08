@@ -1,6 +1,5 @@
 package stepdefinitions;
 
-import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -11,7 +10,7 @@ import pages.ValoriHomePage;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class StepDefinitions {
     private WebDriver driver;
@@ -57,10 +56,14 @@ public class StepDefinitions {
 
     @Then( "^the contact us form is available$" )
     public void theContactUsFormIsAvailable() throws Throwable {
-        //TODO IMPLEMENT THIS
-        //Verify the contact form fields are available.
-        throw new PendingException();
+        ContactUsPage contactUsPage = new ContactUsPage(driver);
+        assertTrue(contactUsPage.isFirstnameVisible());
+        assertTrue(contactUsPage.isLastnameVisible());
+        assertTrue(contactUsPage.isCompanyVisible());
+        assertTrue(contactUsPage.isPhoneVisible());
+        assertTrue(contactUsPage.isEmailVisible());
+        assertTrue(contactUsPage.isMessageVisible());
+        assertTrue(contactUsPage.isSendVisible());
     }
 }
-
 
