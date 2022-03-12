@@ -11,16 +11,3 @@ Feature: Test navigation on the valori.nl homepage
     And I navigate to the Mobile Chapter page
     And I contact Valori
     Then the contact us form is available
-
-  Scenario Outline: As a user I want to write my first name, my last name, my email,
-  my message so that Valori can help me further
-    Given I am on the Valori homepage
-    When I navigate to the Mobile Chapter page
-    And I contact Valori
-    Then I fill in my info
-    
-  Examples:
-  |firstname|L                 |
-  |lastname |M                 |
-  |email    |whatever@gmail.com|
-  |message  |blabla            |
