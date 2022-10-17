@@ -4,12 +4,14 @@ import io.cucumber.java.PendingException;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import pages.ContactUsPage;
 import pages.MobileChapterPage;
 import pages.ValoriHomePage;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import static org.junit.Assert.assertTrue;
 
@@ -57,9 +59,29 @@ public class StepDefinitions {
 
     @Then( "^the contact us form is available$" )
     public void theContactUsFormIsAvailable() throws Throwable {
-        //TODO IMPLEMENT THIS
-        //Verify the contact form fields are available.
-        throw new PendingException();
+        ContactUsPage contactUsPage=new ContactUsPage(driver);
+        assertTrue(contactUsPage.contactFormIsAvailable());
+    }
+
+    @Given("The user is on the contact us page")
+    public void theUserIsOnTheContactUsPage() {
+        ContactUsPage contactUsPage=new ContactUsPage(driver);
+        contactUsPage.navigateToContactUsPage();
+
+    }
+
+    @When("The user fills the contact us form the following details")
+    public void theUserFillsTheFormTheFollowingDetails(Map<String,String> userInfo){
+        ContactUsPage contactUsPage=new ContactUsPage(driver);
+        contactUsPage.fillContactUsForm(userInfo);
+
+    }
+
+    @Then("The user should be able to submit a message")
+    public void theUserShouldBeAbleToSubmitAMessage() {
+        ContactUsPage contactUsPage=new ContactUsPage(driver);
+        assertTrue(contactUsPage.submitBtnIsEnable());
+
     }
 }
 
