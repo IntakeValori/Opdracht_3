@@ -96,13 +96,13 @@ public class StepDefinitions {
         contactUsPage.fillInPhoneNumber(phoneNumber);
         contactUsPage.fillInMessage(message);
         assertThat(contactUsPage.getFilledInCompanyName())
-                .as("First name is not as expected")
+                .as("Company name is not as expected")
                 .isEqualTo(companyName);
         assertThat(contactUsPage.getFilledInPhoneNumber())
-                .as("Last name is not as expected")
+                .as("Phone number is not as expected")
                 .isEqualTo(phoneNumber);
         assertThat(contactUsPage.getFilledInMessage())
-                .as("Email is not as expected")
+                .as("Message is not as expected")
                 .isEqualTo(message);
     }
 }
