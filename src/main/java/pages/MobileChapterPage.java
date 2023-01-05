@@ -6,31 +6,30 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
+import java.time.Duration;
 import java.util.List;
 
 public class MobileChapterPage {
-
     private WebDriver driver;
-    private int timeOut = 5;
-
-    private By mobilePageSlogan = By.xpath("//h1[contains(text(),'Mobiel App testen')]");
+    private int timeOut = 10;
     private By articleHeaderBlock = By.xpath("//h2[@class='h1 block__title']/a");
     private By contactUsButton = By.xpath("//a[contains(text(),'Neem contact op')]");
+    private By mobilePageSlogan = By.xpath("//h1[contains(text(),'Mobiel App testen')]");
+
 
     public MobileChapterPage(WebDriver driver){
         this.driver = driver;
         PageFactory.initElements(driver,this);
     }
 
-    public boolean isMobilePageVisibile(){
-        WebDriverWait wait = new WebDriverWait(driver,timeOut);
+    public boolean isMobilePageVisible(){
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(timeOut));
         wait.until(ExpectedConditions.presenceOfElementLocated(mobilePageSlogan));
         return driver.findElement(mobilePageSlogan).isDisplayed();
     }
 
     public boolean areArticlesVisible() {
-        WebDriverWait wait = new WebDriverWait(driver,timeOut);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOut));
         wait.until(ExpectedConditions.presenceOfElementLocated(articleHeaderBlock));
         List<WebElement> allArticles = driver.findElements(articleHeaderBlock);
         for (WebElement article: allArticles) {
@@ -43,10 +42,9 @@ public class MobileChapterPage {
 
 
     public void clickContactUsButton(){
-        WebDriverWait wait = new WebDriverWait(driver,timeOut);
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(timeOut));
         wait.until(ExpectedConditions.presenceOfElementLocated(contactUsButton));
-        driver.findElement(contactUsButton).click();
+       driver.findElement(contactUsButton).click();
     }
-
 
 }
