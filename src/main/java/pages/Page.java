@@ -1,6 +1,8 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -17,5 +19,11 @@ public class Page {
     }
     public String getPageTitle() {
         return driver.getTitle();
+    }
+
+    public void enterTextIntoField(String text, By locator) {
+        WebElement locatorElement = driver.findElement(locator);
+        locatorElement.click();
+        locatorElement.sendKeys(text);
     }
 }

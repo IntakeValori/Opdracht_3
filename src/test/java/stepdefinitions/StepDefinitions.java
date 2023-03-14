@@ -75,8 +75,10 @@ public class StepDefinitions {
 
     @Then("I fill in all the mandatory fields, {string} , {string}, {string}")
     public void iFillInTheMandatoryFields(String firstName, String lastName, String email) {
-        contactUsPage.fillInFirstName(firstName);
-        contactUsPage.fillInLastName(lastName);
+//        contactUsPage.fillInFirstName(firstName);
+        contactUsPage.enterFirstName(firstName);
+        contactUsPage.enterLastName("Test");
+//        contactUsPage.fillInLastName(lastName);
         contactUsPage.fillInEmail(email);
         assertThat(contactUsPage.getFilledInFirstName())
                 .as("First name is not as expected")

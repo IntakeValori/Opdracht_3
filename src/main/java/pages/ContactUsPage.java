@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -10,14 +11,15 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class ContactUsPage extends Page{
 
     private By contactUsPageTitle = By.xpath("//h1[contains(text(),'Contact')]");
-    private By contactUsFirstNameInputField = By.cssSelector("input[name='firstName']");
+    public By contactUsFirstNameInputField = By.cssSelector("input[name='firstName']");
     private By contactUsLastNameInputField = By.cssSelector("input[name='lastName']");
     private By contactUsEmailInputField = By.cssSelector("input[name='email']");
     private By contactUsCompanyNameInputField = By.cssSelector("input[name='companyName']");
     private By contactUsPhoneNumberInputField = By.cssSelector("input[name='homePhone']");
     private By contactUsMessageInputField = By.cssSelector("textarea[name='message']");
     private By submitButton = By.cssSelector(".block-button.block-button--primary");
-//    private By firstName
+
+
 
     public ContactUsPage(WebDriver driver){
         super(driver);
@@ -37,6 +39,13 @@ public class ContactUsPage extends Page{
     public Boolean isSubmitButtonVisible(){
         wait.until(ExpectedConditions.presenceOfElementLocated(submitButton));
         return driver.findElement(submitButton).isDisplayed();
+    }
+
+    public void enterFirstName(String firstname){
+        enterTextIntoField(firstname, contactUsFirstNameInputField);
+    }
+    public void enterLastName(String lastName){
+        enterTextIntoField(lastName, contactUsLastNameInputField);
     }
     public void fillInFirstName(String firstName){
         driver.findElement(contactUsFirstNameInputField).click();
