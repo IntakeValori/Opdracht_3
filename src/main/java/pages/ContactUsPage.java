@@ -35,6 +35,6 @@ public class ContactUsPage extends BasePage {
         driver.findElement(firstNameInput).sendKeys(persona.firstName);
         driver.findElement(lastNameInput).sendKeys(persona.lastName);
         driver.findElement(emailInput).sendKeys(persona.email);
-        driver.findElement(formInputMessage).sendKeys("Lorem ipsum dolor sit amet, consectetur ...");
+        driver.findElement(formInputMessage).sendKeys(persona.message);
     }
 }

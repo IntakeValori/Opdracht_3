@@ -2,6 +2,7 @@ package stepdefinitions;
 
 import api.RandomApi;
 import entities.Persona;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -9,6 +10,8 @@ import org.openqa.selenium.WebDriver;
 import pages.*;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
@@ -95,5 +98,19 @@ public class StepDefinitions {
         // Asserting that this persona is no longer the default
         Persona defaultPersona = new Persona();
         assertNotEquals(this.persona.firstName, defaultPersona.firstName);
+    }
+
+    @And("^I fill in the form with given data$")
+    public void fillInFormGivenData(DataTable dataTable) {
+        List<Map<String, String>> data = dataTable.asMaps();
+        for (Map<String, String> record : data) {
+            this.persona.firstName = record.get("FirstName");
+            this.persona.lastName = record.get("LastName");
+            this.persona.email = record.get("Email");
+            this.persona.message = record.get("Message");
+
+            // Finish by calling the earlier "^I fill in the form$"
+            this.iFillInTheForm();
+        }
     }
 }

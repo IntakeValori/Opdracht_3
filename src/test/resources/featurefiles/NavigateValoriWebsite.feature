@@ -25,3 +25,13 @@ Feature: Test navigation on the valori.nl homepage
     And I get random persona from random Api
     And I fill in the form
     Then the contact send button is clickable
+
+  Scenario: As a user I want to fill the contact form with values from a data table
+    Given I am on the Valori homepage
+    And I navigate to the performance testing page
+    And I contact Valori
+    And I fill in the form with given data
+      | FirstName | LastName | Email         | Message                                |
+      | Lori      | Ips      | lori@ips.com  | Testing with a duck                    |
+      | Dolor     | Set      | dolor@set.com | Simple and plain but with a " and a \| |
+    Then the contact send button is clickable
