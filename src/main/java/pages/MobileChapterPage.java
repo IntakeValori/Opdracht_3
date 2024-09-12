@@ -27,6 +27,7 @@ public class MobileChapterPage {
         WebDriverWait wait = new WebDriverWait(driver,timeOut);
         wait.until(ExpectedConditions.presenceOfElementLocated(mobilePageSlogan));
         return driver.findElement(mobilePageSlogan).isDisplayed();
+
     }
 
     public boolean areArticlesVisible() {
